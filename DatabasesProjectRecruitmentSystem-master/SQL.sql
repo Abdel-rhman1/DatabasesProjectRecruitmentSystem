@@ -1,4 +1,4 @@
-CREATE DATABASE Recruitment;
+CREATE DATABASE IF NOT EXISTS Recruitment;
 --Table JobSeeker ---------------------------------------------------------------------------------------
 CREATE TABLE JobSeeker(
 Fname VARCHAR(15),
@@ -28,7 +28,7 @@ set Fname='Jhon'
 where Ssn=515;
 select * from JobSeeker
 
--- 3) Showing a list of job seekers that satisfy certain criteria (e.g. industry, location, experienceÖ)
+-- 3) Showing a list of job seekers that satisfy certain criteria (e.g. industry, location, experience‚Ä¶)
 -- 1]
 select *
 from JobSeeker
@@ -112,7 +112,7 @@ update Vacancy
 set Title='Admin'
 where Id=4;
 select * from Vacancy
--- 3) Showing a list of vacancies that satisfy certain criteria (e.g. industry, location, required experienceÖ)
+-- 3) Showing a list of vacancies that satisfy certain criteria (e.g. industry, location, required experience‚Ä¶)
 -- 1]
 select *
 from Vacancy
@@ -209,7 +209,7 @@ alter table Applys_On ADD FOREIGN KEY(V_Id) References Vacancy(Id);
 
 
 -- Query No. (1) ------------------------------------------------------------------------------------
---What was the most interesting job ìtitleî that had maximum number of applicants?
+--What was the most interesting job ‚Äútitle‚Äù that had maximum number of applicants?
 
 select top 1 Applys_On.V_Id,Count(*) as maxApplicants
 from Applys_On
@@ -224,10 +224,10 @@ where Db.V_Id=Vacancy.Id
 
 
 -- Query No. (2) -------------------------------------------------------------------------------------
--- What was the announced job ìtitleî that hadnít any applicants last month?
+-- What was the announced job ‚Äútitle‚Äù that hadn‚Äôt any applicants last month?
 select Vacancy.Id from Vacancy
 except(select DBTabl.V_Id from DBTabl)
--- this is the ids of the job title that hadnít any applicants last month
+-- this is the ids of the job title that hadn‚Äôt any applicants last month
 --****************************************************************************************************
 
 
@@ -241,7 +241,7 @@ order by number desc
 
 
 -- Query No. (4) -------------------------------------------------------------------------------------
--- Who were the employers didnít announce any job last month?
+-- Who were the employers didn‚Äôt announce any job last month?
 select  Vacancy.E_Id  ,count(*) as number into Active_Employers
 from Vacancy
 Group by Vacancy.E_Id
